@@ -1,0 +1,74 @@
+!!!
+%html
+  %head
+    %meta{charset: 'utf-8'}
+    %title Party Cloud
+
+    %script{src: 'http://use.typekit.com/foi6gyc.js'}
+    :javascript
+      try{Typekit.load();}catch(e){}
+
+    :css
+      * { margin: 0; padding: 0; }
+      html {
+        color: white;
+        font: 500 14px/20px "futura-pt", Helvetica, Arial, sans-serif;
+        background-color: #8CF;
+      }
+
+      body, html {
+        height: 100%;
+      }
+
+      #wrapper {
+        position: relative;
+        height: 100%;
+        width: 320px;
+        margin: 0 auto;
+      }
+
+      .vcard {
+        position: absolute;
+        top: 50%; left: 0; right: 0;
+        margin-top: -40px;
+
+        text-align: center;
+      }
+
+      h1 {
+        font-size: 48px;
+        line-height: 80px;
+        font-weight: 700;
+        margin: 0;
+      }
+
+      a {
+        color: white; text-decoration: none;
+      }
+
+      p {
+        color: rgba(255, 255, 255, 0.6);
+        line-height: 20px;
+      }
+
+  %body
+    #wrapper
+      .vcard
+        %h1.org
+          %a.url{href: '//mutlicorp.com'} Party Cloud
+
+        %p Simple, real-time multiplayer. Coming soon.
+
+  - if production?
+    :javascript
+      var _gauges = _gauges || [];
+      (function() {
+        var t   = document.createElement('script');
+        t.type  = 'text/javascript';
+        t.async = true;
+        t.id    = 'gauges-tracker';
+        t.setAttribute('data-site-id', '4ff916c3f5a1f531f0000043');
+        t.src = '//secure.gaug.es/track.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(t, s);
+      })();
