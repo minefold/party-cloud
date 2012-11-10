@@ -1,5 +1,5 @@
-#= require_self
 #= require raphael
+#= require_self
 
 rand = (n) ->
   Math.floor(Math.random() * n)
