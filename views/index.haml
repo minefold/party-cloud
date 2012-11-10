@@ -1,127 +1,13 @@
-!!!
-%html
-  %head
-    %meta{charset: 'utf-8'}
-    %title Party Cloud
-    %script{src: 'http://use.typekit.com/qzl8aqw.js'}
-    :javascript
-      try{Typekit.load();}catch(e){}
+%header
+  %h1.brand
+    The Party Cloud
 
-    :css
-      * { margin: 0; padding: 0; }
-      html {
-        color: #88cfff;
-        font: 500 14px/20px "futura-pt-1","futura-pt-2", Helvetica, Arial, sans-serif;
-        background-color: #19d;
+  %h2
+    Fantastik game hosting by
+    %a{href: 'http://mutlicorp.com'} Mütli Corp.
 
-        -webkit-font-smoothing: antialiased;
-      }
+%p The Party Cloud is game hosting from the Future. It's the magic behind <a href="https://minefold.com" title="Minefold">Minefold</a>, one of the largest game server hosts in the world. If you're interested in rock-solid hosting and a massive audience for your game (or mod) please put your email down and we'll be in touch soon.
 
-      body {
-        width: 480px;
-        text-align: center;
-        margin-top: 180px;
-        margin: 180px auto 100px auto;
-      }
-
-      h1 {
-        font-size: 48px;
-        line-height: 80px;
-        font-weight: 600;
-        margin: 0;
-        color: white;
-      }
-
-      a {
-         text-decoration: none;
-      }
-
-      p {
-        color: #88cfff;
-        line-height: 40px;
-        font-size: 16px;
-        font-weight: 600;
-        font-size: 22px;
-      }
-
-      .desc {
-        margin-bottom: 40px;
-      }
-
-      form p {
-        line-height: 20px;
-        color: rgba(0,0,0,0.4);
-        font-weight: 600;
-        margin-bottom: 20px;
-        font-size: 16px;
-      }
-
-      form input {
-        padding: 5px;
-        font-size: 18px;
-        font-family: Helvetica, Arial, sans-serif;
-        border: none;
-        outline: none;
-      }
-
-      form input[type=submit] {
-        background-color: rgba(0,0,0,0.4);
-        color: white;
-        border: none;
-        padding: 5px 20px;
-      }
-
-      #footer, #footer a {
-        margin-top: 40px;
-        font-family: Helvetica, Arial, sans-serif;
-        font-size: 12px;
-        color: rgba(255,255,255, 0.4);
-      }
-
-      #footer a {
-        color: rgba(255,255,255, 0.8);
-      }
-
-
-  %body
-    %h1 Party Cloud
-
-    %p.desc
-      The real-time game hosting platform.
-      %br
-      Made for fun.
-
-    %form#subForm{action: "http://mutlicorp.createsend.com/t/t/s/tjju/", method: "post"}
-      %p We will email you when more information is available.
-      %input#tjju-tjju{type: 'email', name: 'cm-tjju-tjju', size: 25, placeholder: 'Email Address', value: params[:email]}
-      %input{type: 'submit', value: 'Notify Me!'}
-
-    #footer
-      A <a href="http://mutlicorp.com">Mütli Corp</a> thang.
-
-  - if production?
-    :javascript
-      var _gauges = _gauges || [];
-      (function() {
-        var t   = document.createElement('script');
-        t.type  = 'text/javascript';
-        t.async = true;
-        t.id    = 'gauges-tracker';
-        t.setAttribute('data-site-id', '4ff916c3f5a1f531f0000043');
-        t.src = '//secure.gaug.es/track.js';
-        var s = document.getElementsByTagName('script')[0];
-        s.parentNode.insertBefore(t, s);
-      })();
-
-    :javascript
-
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', 'UA-35866857-2']);
-      _gaq.push(['_setDomainName', 'partycloud.com']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
+%form{action: 'http://mutlicorp.createsend.com/t/t/s/tjju', method: 'post'}
+  %input{type: 'email', name: 'cm-tjju-tjju', placeholder: 'email@example.com'}
+  %input{type: 'submit', value: 'Notify me'}
