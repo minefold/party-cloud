@@ -5,7 +5,6 @@ rand = (n) ->
   Math.floor(Math.random() * n)
 
 $(document).ready ->
-  console.log 'foo'
   paper = Raphael($('#paper')[0])
 
   # Red, Green, Blue, Yellow, Gray
@@ -44,9 +43,6 @@ $(document).ready ->
 
   shapes = [circle, rect, zigzag, triangle]
 
-  console.log( paper.width * paper.height)
-  console.log((paper.width * paper.height) / 5000)
-
-  for i in [0..(10 + rand((paper.width * paper.height) / 5000))]
+  for i in [0..(10 + rand((paper.width * paper.height) / 20000))]
     shape = shapes[rand(shapes.length)]()
     makeYouRandy(shape)
