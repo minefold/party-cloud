@@ -1,10 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
-gem 'unicorn'
+gem 'puma'
 gem 'sinatra'
-gem 'sprockets'
-
-gem 'haml'
-gem 'sass'
-gem 'bourbon'
-gem 'coffee-script'
