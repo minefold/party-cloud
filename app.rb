@@ -13,5 +13,5 @@ set :digest_assets, false
 end
 
 get '/' do
-  haml :index
+  redirect to('https://minefold.com/developers'), 301
 end
