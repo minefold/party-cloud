@@ -1,0 +1,92 @@
+$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$monaco: Monaco, Consolas, 'Lucida Console', monospace;
+
+$blue: #5086CA;
+$yellow: #FD8;
+$green: #4B5;
+
+$lightGray: lighten(desaturate($blue, 20%), 40%);
+
+@mixin clearfix {
+  *zoom: 1;
+
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+
+  &:after {
+    clear: both;
+  }
+}
+
+body {
+  font-family: $helvetica;
+  background-color: $lightGray;
+  margin: 0;
+  padding: 0;
+}
+
+.methods {
+  .method-section {
+    vertical-align: top;
+    .method-description {
+      width: 460px;
+
+      background-color: white;
+
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .method-example {
+      padding-left: 20px;
+      padding-right: 20px;
+
+      font: 12px $monaco;
+
+      .method-definition {
+        .method-verb {
+        }
+        .method-pattern {
+        }
+      }
+
+      .method-request {
+        white-space: pre;
+        .prompt {
+          color: rgba(black, 0.4);
+        }
+      }
+
+      .method-response {
+        .method-response-headers {
+        }
+        .method-response-body {
+          white-space: pre;
+        }
+      }
+    }
+  }
+}
+
+dl.attribute-list {
+  font-size: 12px;
+  dt {
+    font-weight: 600;
+  }
+
+  dd {
+    font-weight: 600;
+
+    span, p {
+      font-weight: normal;
+    }
+    span {
+      font-style: italic;
+    }
+  }
+
+
+}

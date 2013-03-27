@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <!-- TODO -->
+    <meta name="description" content="">
+    <!-- TODO -->
+    <meta name="og:image" content="">
+
+    <title>Party Cloud is a cloud game server platform</title>
+
+    <link href="http://fonts.googleapis.com/css?family=Droid+Sans+Mono" rel="stylesheet" type="text/css" />
+    <link href="/app.css">
+
+    <% erb :_segment %>
+  </head>
+  <body>
+    <table class="methods">
+      <tr class="method-section">
+
+        <td class="method-description">
+          <h3>Servers</h3>
+          <p>Servers are the basic unit of the Party Cloud. They represent an  area where players can play together.
+        </td>
+
+      </tr>
+
+      <tr class="method-section">
+
+        <td class="method-description">
+          <h4>The server object</h4>
+          <h5>Attributes</h5>
+          <dl class="attribute-list">
+            <dt>id</dt>
+            <dd>string</dd>
+
+            <dt>object</dt>
+            <dd>string, <span>value is "server"</span></dd>
+
+            <dt>livemode</dt>
+            <dd>boolean</dd>
+
+            <dt>name</dt>
+            <dd>string <span> or null</span></dd>
+            <dd>
+              <p>
+                Used to display back to the user or just to make servers easier to identify.
+              </p>
+            </dd>
+
+            <dt>region</dt>
+            <dd>string</dd>
+            <dd>
+              <p>
+                The server's geographic region. Persistant data from the server will be stored here.
+              </p>
+            </dd>
+
+            <dt>state</dt>
+            <dd>string</dd>
+
+            <dt>players</dt>
+            <dd>positive integer or zero</dd>
+
+            <dt>funpack</dt>
+            <dd>string</dd>
+
+            <dt>snapshot</dt>
+            <dd>string <span>or null</span></dd>
+            <dd>
+              <p>The id of the current snapshot of the server's data. Can be null if the server hasn't run yet.</p>
+            </dd>
+
+            <dt>created</dt>
+            <dd>timestamp</dd>
+
+            <dt>ip</dt>
+            <dd>string <span>or null</span></dd>
+
+            <dt>port</dt>
+            <dd>positive integer <span>or null</span></dd>
+          </dl>
+
+        </td>
+        <td class="method-example">
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "object": "server",
+  "livemode": false,
+  "name": "minebnb",
+  "region": "us-east-1",
+  "state": "up",
+  "players": 1,
+  "funpack": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
+  "snapshot": "e279e9e6-5392-43c0-a443-858aac1af2e0",
+  "created": 1364243761,
+  "ip": "192.168.1.1",
+  "port": 12345
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Create a new server</h4>
+          <p>Creates a new server</p>
+          <h5>Arguments</h5>
+          <dl class="argument-list">
+            <dt>funpack</dt>
+            <dd>required</dd>
+
+            <dt>name</dt>
+            <dd>optional</dd>
+
+            <dt>region</dt>
+            <dd>optional, <span>default is us-east-1</span></dd>
+          </dl>
+
+          <h5>Returns</h5>
+          <p>A new server object.</p>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+            <span class="method-verb method-verb-get">POST</span>
+            <span class="method-pattern">
+              https://api.partycloud.com/servers
+            </span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers \
+    -u auth1234: \
+    -d name=minebnb \
+    -d region=us-east-1 \
+    -d funpack=5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "id": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "object": "server",
+  "livemode": false,
+  "name": "minebnb",
+  "region": "us-east-1",
+  "state": "down",
+  "players": 0,
+  "funpack": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
+  "snapshot": null,
+  "created": 1364243761,
+  "ip": null,
+  "port": null
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h3>Sessions</h3>
+        </td>
+
+        <td class="method-example">
+
+          <div class="method-definition">
+            <span class="method-verb method-verb-get">GET</span>
+            <span class="method-pattern">
+              https://api.partycloud.com/sessions/{SESSION_ID}
+            </span>
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "object": "session",
+  "livemode": false,
+  "endOnEmpty": true,
+  "created": 1364243761,
+  "started": 1364244833,
+  "stopped": 1364247533,
+  "server": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "ip": "192.168.1.1",
+  "port": 12345
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h3>Players</h3>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+            <span class="method-verb method-verb-get">GET</span>
+            <span class="method-pattern">
+              https://api.partycloud.com/players/{PLAYER_ID}
+            </span>
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+  "object": "player",
+  "livemode": false,
+  "username": "chrislloyd",
+  "email": "christopher.lloyd@gmail.com",
+  "created": 1364243761
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h3>Funpacks</h3>
+        </td>
+
+        <td class="method-example">
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
+  "object": "funpack",
+  "livemode": false,
+  "name": "team-fortress-2",
+  "created": 1364243761
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h3>Snapshots</h3>
+        </td>
+
+        <td class="method-example">
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "e279e9e6-5392-43c0-a443-858aac1af2e0",
+  "object": "snapshot",
+  "livemode": false,
+  "created": 1364243761,
+  "size": 1401946112,
+  "parent": "0aea082a-a57b-446f-bec0-ef96c33b8788"
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>
