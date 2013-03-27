@@ -5,7 +5,7 @@ $blue: #5086CA;
 $yellow: #FD8;
 $green: #4B5;
 
-$lightGray: lighten(desaturate($blue, 20%), 40%);
+$lightGray: lighten(desaturate($blue, 20%), 43%);
 
 @mixin clearfix {
   *zoom: 1;
@@ -31,6 +31,7 @@ body {
 .methods {
   .method-section {
     vertical-align: top;
+
     .method-description {
       width: 460px;
 
@@ -38,6 +39,9 @@ body {
 
       padding-left: 20px;
       padding-right: 20px;
+
+      border-right: 1px solid rgba(black, 0.1);
+      border-bottom: 1px solid rgba(black, 0.1);
     }
 
     .method-example {
@@ -46,21 +50,58 @@ body {
 
       font: 12px $monaco;
 
-      .method-definition {
-        .method-verb {
+      .method-example-object {
+        white-space: pre;
+        &:before {
+          display: block;
+          content: "Example Object";
+          text-transform: uppercase;
+          color: rgba(black, 0.4);
         }
-        .method-pattern {
+      }
+
+      .method-definition {
+        white-space: pre;
+
+        &:before {
+          display: block;
+          content: "Definition";
+          text-transform: uppercase;
+          color: rgba(black, 0.4);
+        }
+
+        .method-verb,
+        .verb {
+        }
+        .method-pattern,
+        .pattern {
         }
       }
 
       .method-request {
         white-space: pre;
+
+        &:before {
+          display: block;
+          content: "Example Request";
+          text-transform: uppercase;
+          color: rgba(black, 0.4);
+        }
+
         .prompt {
           color: rgba(black, 0.4);
         }
       }
 
       .method-response {
+
+        &:before {
+          display: block;
+          content: "Example Response";
+          text-transform: uppercase;
+          color: rgba(black, 0.4);
+        }
+
         .method-response-headers {
         }
         .method-response-body {
@@ -71,7 +112,8 @@ body {
   }
 }
 
-dl.attribute-list {
+dl.attribute-list,
+dl.argument-list {
   font-size: 12px;
   dt {
     font-weight: 600;

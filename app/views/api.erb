@@ -15,8 +15,30 @@
     <% erb :_segment %>
   </head>
   <body>
+    <ol>
+      <li>
+        <a href="#servers">Servers</a>
+        <ol>
+          <li><a href="#create-server">Create a new server</a></li>
+          <li><a href="#retrieve-server">Retrieve an existing server</a></li>
+          <li><a href="#update-server">Update a server</a></li>
+          <li><a href="#delete-server">Delete a server</a></li>
+          <li><a href="#list-servers">List all servers</a></li>
+        </ol>
+      </li>
+      <li>
+        <a href="#sessions">Sessions</a>
+        <ol>
+          <li><a href="#start-session">Start a new session</a></li>
+          <li><a href="#retrieve-server-session">Retrieve a server's current session</a></li>
+          <li><a href="#retrieve-session">Retrieve an existing session</a></li>
+          <li><a href="#kill-session">Kill a session</a></li>
+        </ol>
+      </li>
+    </ol>
+
     <table class="methods">
-      <tr class="method-section">
+      <tr class="method-section" id="servers">
 
         <td class="method-description">
           <h3>Servers</h3>
@@ -83,8 +105,7 @@
 
         </td>
         <td class="method-example">
-          <div class="method-response">
-            <div class="method-response-body">
+          <div class="method-example-object">
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "server",
@@ -99,7 +120,6 @@
   "ip": "192.168.1.1",
   "port": 12345
 }
-            </div>
           </div>
         </td>
       </tr>
@@ -126,10 +146,7 @@
 
         <td class="method-example">
           <div class="method-definition">
-            <span class="method-verb method-verb-get">POST</span>
-            <span class="method-pattern">
-              https://api.partycloud.com/servers
-            </span>
+<span class="method-verb method-verb-get">POST</span> <span class="method-pattern">https://api.partycloud.com/servers</span>
           </div>
 
           <div class="method-request">
@@ -162,17 +179,104 @@
         </td>
       </tr>
 
-      <tr class="method-section">
+      <tr class="method-section" id="retrieve-server">
+        <td class="method-description">
+          <h4>Retrieve an existing server</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="update-server">
+        <td class="method-description">
+          <h4>Update a server</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="delete-server">
+        <td class="method-description">
+          <h4>Delete a server</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="list-servers">
+        <td class="method-description">
+          <h4>List all servers</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="sessions">
         <td class="method-description">
           <h3>Sessions</h3>
+          <p>Sessions represent a run of a server. A server can only have one active session.</p>
         </td>
+        <td class="method-example">
+          <div class="method-example-object">
+{
+  "id": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "object": "session",
+  "livemode": false,
+  "endOnEmpty": true,
+  "args": "motd=Hello!",
+  "created": 1364243761,
+  "started": 1364244833,
+  "stopped": 1364247533,
+  "server": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "ip": "192.168.1.1",
+  "port": 12345
+}
+            </div>
+          </div>
+        </td>
+      </tr>
 
+      <tr class="method-section" id="start-session">
+        <td class="method-description">
+          <h4>Start a session</h4>
+        </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="verb">POST</span> <span class="pattern">https://api.partycloud.com/servers/{SERVER_ID}/session</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="retrieve-server-session">
+        <td class="method-description">
+          <h4>Retrieve a server's current session</h4>
+        </td>
         <td class="method-example">
 
           <div class="method-definition">
-            <span class="method-verb method-verb-get">GET</span>
-            <span class="method-pattern">
-              https://api.partycloud.com/sessions/{SESSION_ID}
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/servers/{SERVER_ID}/session
+            </span>
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "object": "session",
+  "livemode": false,
+  "endOnEmpty": true,
+  "created": 1364243761,
+  "started": 1364244833,
+  "stopped": null,
+  "server": "3871b2fe-0117-422b-ac85-097acea61c18",
+  "ip": "192.168.1.1",
+  "port": 12345
+}
+            </div>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="retrieve-session">
+        <td class="method-description">
+          <h4>Retrieve an existing session</h4>
+        </td>
+        <td class="method-example">
+
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/sessions/{SESSION_ID}
             </span>
           </div>
 
@@ -195,17 +299,86 @@
         </td>
       </tr>
 
+      <tr class="method-section" id="kill-session">
+        <td class="method-description">
+          <h4>Kill a session</h4>
+        </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="verb">DELETE</span> <span class="pattern">https://api.partycloud.com/servers/{SERVER_ID}/session</span>
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section" id="list-sessions">
+        <td class="method-description">
+          <h4>List all sessions</h4>
+        </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="verb">GET</span> <span class="pattern">https://api.partycloud.com/sessions</span>
+          </div>
+        </td>
+      </tr>
+
       <tr class="method-section">
         <td class="method-description">
           <h3>Players</h3>
+          <p>Players are real humans that have played on a servers. Players should not be used for spectators or bots. Players will be automatically created based on the output of a Funpack. If a person changes their username in the game, please update their username here to accurately track their statistics.</p>
         </td>
+      </tr>
 
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>The player object</h4>
+          <h5>Attributes</h5>
+          <dl class="attribute-list">
+            <dt>id</dt>
+            <dd>string</dd>
+
+            <dt>object</dt>
+            <dd>string, <span>value is "player"</span></dd>
+
+            <dt>livemode</dt>
+            <dd>boolean</dd>
+
+            <dt>created</dt>
+            <dd>timestamp</dd>
+
+            <dt>username</dt>
+            <dd>string <span>or null</span></dd>
+
+            <dt>email</dt>
+            <dd>string <span>or null</span></dd>
+          </dl>
+        </td>
+        <td class="method-example">
+          <div class="method-example-object">
+{
+  "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+  "object": "player",
+  "livemode": false,
+  "username": "chrislloyd",
+  "email": "chrislloyd@example.com",
+  "created": 1364243761
+}
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Create a new player</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Retrieve an existing player</h4>
+        </td>
         <td class="method-example">
           <div class="method-definition">
-            <span class="method-verb method-verb-get">GET</span>
-            <span class="method-pattern">
-              https://api.partycloud.com/players/{PLAYER_ID}
-            </span>
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/players/{PLAYER_ID}</span>
           </div>
 
           <div class="method-response">
@@ -225,12 +398,35 @@
 
       <tr class="method-section">
         <td class="method-description">
+          <h4>Update a player</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Delete a player</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>List all players</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
           <h3>Funpacks</h3>
+          <p>Funpacks are a bundle of scripts that make up a runnable game on the Party Cloud. For the moment, Funpacks can only be created by authorized accounts.</p>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
         </td>
 
         <td class="method-example">
-          <div class="method-response">
-            <div class="method-response-body">
+          <div class="method-example-object">
 {
   "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
   "object": "funpack",
@@ -238,31 +434,108 @@
   "name": "team-fortress-2",
   "created": 1364243761
 }
-            </div>
           </div>
         </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
+          <h4>Retrieve an existing Funpack</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>List all Funpacks</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
           <h3>Snapshots</h3>
+          <p>
+            Snapshots are data saved from a server. When a server has an active session, they are created every 10 minutes. A final snapshot is also captured when the session ends. Servers are booted with their last known snapshot. Snapshots are immutable and generated by the system.
+          </p>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>The snapshot object</h4>
+          <h5>Attributes</h5>
+          <dl class="attribute-list">
+          </dl>
         </td>
 
         <td class="method-example">
-          <div class="method-response">
-            <div class="method-response-body">
+          <div class="method-example-object">
 {
   "id": "e279e9e6-5392-43c0-a443-858aac1af2e0",
   "object": "snapshot",
   "livemode": false,
   "created": 1364243761,
-  "size": 1401946112,
-  "parent": "0aea082a-a57b-446f-bec0-ef96c33b8788"
+  "size": 1401946112
 }
-            </div>
           </div>
         </td>
       </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Retrieve an existing snapshot</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>Download an archive of a snapshot</h4>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>List all snapshots</h4>
+        </td>
+      </tr>
+
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h3>Regions</h3>
+          <p>
+            Regions are datacenters that are available to run a game. They can be queried to determine the region with the fastest ping-time for the player.
+          </p>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>The region object</h4>
+          <h5>Attributes</h5>
+          <dl class="attribute-list">
+          </dl>
+        </td>
+
+        <td class="method-example">
+          <div class="method-example-object">
+{
+  "id": "us-east-1",
+  "object": "region",
+  "livemode": false,
+  "created": 1364243761,
+  "lat": 38.13,
+  "long": -78.45,
+}
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h4>List all regions</h4>
+        </td>
+      </tr>
+
     </table>
   </body>
 </html>
