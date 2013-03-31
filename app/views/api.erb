@@ -15,34 +15,107 @@
     <% erb :_segment %>
   </head>
   <body>
-    <ol>
-      <li>
-        <a href="#servers">Servers</a>
-        <ol>
-          <li><a href="#create-server">Create a new server</a></li>
-          <li><a href="#retrieve-server">Retrieve an existing server</a></li>
-          <li><a href="#update-server">Update a server</a></li>
-          <li><a href="#delete-server">Delete a server</a></li>
-          <li><a href="#list-servers">List all servers</a></li>
-        </ol>
-      </li>
-      <li>
-        <a href="#sessions">Sessions</a>
-        <ol>
-          <li><a href="#start-session">Start a new session</a></li>
-          <li><a href="#retrieve-server-session">Retrieve a server's current session</a></li>
-          <li><a href="#retrieve-session">Retrieve an existing session</a></li>
-          <li><a href="#kill-session">Kill a session</a></li>
-        </ol>
-      </li>
-    </ol>
+    <nav class="guide">
+      <ol>
+        <li><a href="#authentication">Authentication</a></li>
+        <li><a href="#versioning">Versioning</a></li>
+        <li>
+          <a href="#servers">Servers</a>
+          <ol>
+            <li><a href="#create-server">Create a new server</a></li>
+            <li><a href="#retrieve-server">Retrieve an existing server</a></li>
+            <li><a href="#update-server">Update a server</a></li>
+            <li><a href="#delete-server">Delete a server</a></li>
+            <li><a href="#list-servers">List all servers</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#sessions">Sessions</a>
+          <ol>
+            <li><a href="#start-session">Start a new session</a></li>
+            <li><a href="#retrieve-server-session">Retrieve a server's current session</a></li>
+            <li><a href="#retrieve-session">Retrieve an existing session</a></li>
+            <li><a href="#kill-session">Kill a session</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#players">Players</a>
+          <ol>
+            <li><a href="#create-player">Create a new player</a></li>
+            <li><a href="#retrieve-player">Retrieve an existing player</a></li>
+            <li><a href="#update-player">Update a player</a></li>
+            <li><a href="#delete-player">Delete a player</a></li>
+            <li><a href="#list-players">List all players</a></li>
+          </ol>
+        </li>
+        <li>
+          <a href="#funpacks">Funpacks</a>
+          <ol>
+            <li><a href="#retrieve-funpack">Retrieve an existing Funpack</a></li>
+            <li><a href="#list-funpacks">List all Funpacks</a></li>
+          </ol>
+        </li>
+
+        <li>
+          <a href="#snapshots">Shapshots</a>
+          <ol>
+            <li><a href="#retrieve-snapshot">Retrieve an existing shapshot</a></li>
+            <li><a href="#download-snapshot">Download an archive of a snapshot<a></li>
+            <li><a href="#list-snapshots">List all snapshots<a></li>
+          </ol>
+        </li>
+
+        <li>
+          <a href="#regions">Regions</a>
+          <ol>
+            <li><a href="#list-regions">List all regions</a></li>
+          </ol>
+        </li>
+      </ol>
+    </nav>
 
     <table class="methods">
+      <tr class="method-section">
+        <td class="method-description">
+          <h2>Authentication</h2>
+          <p>You authenticate to the Party Cloud API by providing an API key in the request. You can manage your API key from your account. Your API key carries many privileges, so be sure to keep it secret!</p>
+
+          <p>Authentication to the API occurs via HTTP Basic Auth. Provide your API key as the basic auth username. You do not need to provide a password.</p>
+
+          <p>All API requests must be made over HTTPS. Calls made over plain HTTP will fail. You must authenticate for all requests.</p>
+        </td>
+        <td class="method-example">
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers \
+    -u abc123:
+          </div>
+          <div class="method-example-request">
+
+          </div>
+        </td>
+      </tr>
+
+      <tr class="method-section">
+        <td class="method-description">
+          <h2>Versioning</h2>
+          <p>When we make backwards-incompatible changes to the API, we release new versions. The current version is <strong>1</strong>.</p>
+        </td>
+        <td class="method-example">
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers \
+    -H Accept=application/vnd.party-cloud-1+json
+          </div>
+          <div class="method-example-request">
+
+          </div>
+        </td>
+      </tr>
+
       <tr class="method-section" id="servers">
 
         <td class="method-description">
           <h3>Servers</h3>
-          <p>Servers are the basic unit of the Party Cloud. They represent an  area where players can play together.
+          <p>Servers are the basic unit of the Party Cloud. They represent an  area where players can play together. They are isolated but can be run in multiple regions.
         </td>
 
       </tr>
@@ -59,9 +132,6 @@
             <dt>object</dt>
             <dd>string, <span>value is "server"</span></dd>
 
-            <dt>livemode</dt>
-            <dd>boolean</dd>
-
             <dt>name</dt>
             <dd>string <span> or null</span></dd>
             <dd>
@@ -74,7 +144,7 @@
             <dd>string</dd>
             <dd>
               <p>
-                The server's geographic region. Persistant data from the server will be stored here.
+                The server's geographic region. Persistant data from the server will be stored here. This is a attribute of the server, not the session as it's unlikely that servers will move rather than when starting a session because moving existing data may take time.
               </p>
             </dd>
 
@@ -86,6 +156,9 @@
 
             <dt>funpack</dt>
             <dd>string</dd>
+
+            <dt>owner</dt>
+            <dd>string <span> or null</span></dd>
 
             <dt>snapshot</dt>
             <dd>string <span>or null</span></dd>
@@ -109,7 +182,6 @@
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "server",
-  "livemode": false,
   "name": "minebnb",
   "region": "us-east-1",
   "state": "up",
@@ -127,7 +199,7 @@
       <tr class="method-section">
         <td class="method-description">
           <h4>Create a new server</h4>
-          <p>Creates a new server</p>
+          <p>Creates a new server.</p>
           <h5>Arguments</h5>
           <dl class="argument-list">
             <dt>funpack</dt>
@@ -141,7 +213,7 @@
           </dl>
 
           <h5>Returns</h5>
-          <p>A new server object.</p>
+          <p>A new server object. The server isn't running yet, it merely exists logically.</p>
         </td>
 
         <td class="method-example">
@@ -163,7 +235,6 @@
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "server",
-  "livemode": false,
   "name": "minebnb",
   "region": "us-east-1",
   "state": "down",
@@ -183,12 +254,49 @@
         <td class="method-description">
           <h4>Retrieve an existing server</h4>
         </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/servers/#{SERVER_ID}</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers \
+    -u auth1234: \
+    -d name=minebnb \
+    -d region=us-east-1 \
+    -d funpack=5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section" id="update-server">
         <td class="method-description">
           <h4>Update a server</h4>
+          <h5>Arguments</h5>
+          <dl class="argument-list">
+            <dt>force</dt>
+            <dd>boolean</dd>
+            <dd><p>Restarts the server if running</p></dd>
+          </dl>
         </td>
+
+        <tr class="method-section" id="retrieve-server">
+          <td class="method-description">
+            <h4>Retrieve an existing server</h4>
+          </td>
+          <td class="method-example">
+            <div class="method-definition">
+  <span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/servers/#{SERVER_ID}</span>
+            </div>
+
+            <div class="method-request">
+  <span class="prompt">$</span> curl https://api.partycloud.com/servers \
+      -u auth1234: \
+      -d name=minebnb \
+      -d region=us-east-1 \
+      -d funpack=5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12
+            </div>
+          </td>
       </tr>
 
       <tr class="method-section" id="delete-server">
@@ -213,7 +321,6 @@
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "session",
-  "livemode": false,
   "endOnEmpty": true,
   "args": "motd=Hello!",
   "created": 1364243761,
@@ -255,14 +362,26 @@
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "session",
-  "livemode": false,
   "endOnEmpty": true,
   "created": 1364243761,
   "started": 1364244833,
   "stopped": null,
   "server": "3871b2fe-0117-422b-ac85-097acea61c18",
   "ip": "192.168.1.1",
-  "port": 12345
+  "port": 12345,
+  "players": [
+    {
+      "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+      "started": 1364244833,
+      "stopped": 1364244933
+    },
+    {
+      "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+      "started": 1364244943,
+      "stopped": null
+    },
+    { ... }
+  ]
 }
             </div>
           </div>
@@ -285,7 +404,6 @@
 {
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "session",
-  "livemode": false,
   "endOnEmpty": true,
   "created": 1364243761,
   "started": 1364244833,
@@ -302,6 +420,7 @@
       <tr class="method-section" id="kill-session">
         <td class="method-description">
           <h4>Kill a session</h4>
+          <p>Only use this if you want to force stop a server: it'll kick all the players. By default, all sessions end automatically when the server has been empty for 10 minutes.
         </td>
         <td class="method-example">
           <div class="method-definition">
@@ -339,17 +458,20 @@
             <dt>object</dt>
             <dd>string, <span>value is "player"</span></dd>
 
-            <dt>livemode</dt>
-            <dd>boolean</dd>
+            <dt>distinctId</dt>
+            <dd>string</dd>
+            <dd><p>It should correspond to the ID of the person in your system. It can't be changed.</p></dd>
 
             <dt>created</dt>
             <dd>timestamp</dd>
 
             <dt>username</dt>
             <dd>string <span>or null</span></dd>
+            <dd><p>Convenient label for support tools.</p></dd>
 
             <dt>email</dt>
             <dd>string <span>or null</span></dd>
+            <dd><p>Convenient label for support tools.</p></dd>
           </dl>
         </td>
         <td class="method-example">
@@ -357,7 +479,7 @@
 {
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
-  "livemode": false,
+  "distinctId": "1",
   "username": "chrislloyd",
   "email": "chrislloyd@example.com",
   "created": 1364243761
@@ -369,6 +491,26 @@
       <tr class="method-section">
         <td class="method-description">
           <h4>Create a new player</h4>
+          <p>Players will be automatically created when they join a server, however if you want to build server lists you should create a player so you can attach them as a server owner.</p>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">POST</span> <span class="method-pattern">https://api.partycloud.com/players</span>
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-body">
+{
+  "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+  "object": "player",
+  "distinctId": "1",
+  "username": "chrislloyd",
+  "email": "christopher.lloyd@gmail.com",
+  "created": 1364243761
+}
+            </div>
+          </div>
         </td>
       </tr>
 
@@ -386,7 +528,7 @@
 {
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
-  "livemode": false,
+  "distinctId": "1",
   "username": "chrislloyd",
   "email": "christopher.lloyd@gmail.com",
   "created": 1364243761
@@ -400,11 +542,60 @@
         <td class="method-description">
           <h4>Update a player</h4>
         </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">PATCH</span> <span class="method-pattern">https://api.partycloud.com/players/{PLAYER_ID}</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/players/79f4b42b-2cd4-439b-b6fb-0fa4c803168 \
+    -X PATCH
+    -u auth1234:
+    -d username=whatupdave
+    -d email=whatupdave@example.com
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers">
+              Status: 200
+            </div>
+            <div class="method-response-body">
+{
+  "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+  "object": "player",
+  "distinct_id": "1",
+  "username": "whatupdave",
+  "email": "whatupdave@example.com",
+  "created": 1364243761
+}
+            </div>
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
           <h4>Delete a player</h4>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">DELETE</span> <span class="method-pattern">https://api.partycloud.com/players/{PLAYER_ID}</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/players/79f4b42b-2cd4-439b-b6fb-0fa4c803168 \
+    -X DELETE
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers">
+              Status: 204
+            </div>
+            <div class="method-response-body"></div>
+          </div>
         </td>
       </tr>
 
@@ -412,12 +603,44 @@
         <td class="method-description">
           <h4>List all players</h4>
         </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/players</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/players \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "object": "list",
+  "count": 3,
+  "data": [
+    {
+      "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
+      "object": "player",
+      "username": "chrislloyd",
+      "email": "christopher.lloyd@gmail.com",
+      "created": 1364243761
+    },
+    { ... },
+    { ... }
+  ]
+}
+            </div>
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
           <h3>Funpacks</h3>
-          <p>Funpacks are a bundle of scripts that make up a runnable game on the Party Cloud. For the moment, Funpacks can only be created by authorized accounts.</p>
+          <p>Funpacks are a bundle of scripts that make up a runnable game on the Party Cloud. For the moment, Funpacks can only be created and pushed by authorized accounts.</p>
         </td>
       </tr>
 
@@ -430,7 +653,6 @@
 {
   "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
   "object": "funpack",
-  "livemode": false,
   "name": "team-fortress-2",
   "created": 1364243761
 }
@@ -442,11 +664,65 @@
         <td class="method-description">
           <h4>Retrieve an existing Funpack</h4>
         </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/funpacks/{FUNPACK_ID}</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/funpacks/5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12 \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
+  "object": "funpack",
+  "name": "team-fortress-2",
+  "created": 1364243761
+}
+            </div>
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
           <h4>List all Funpacks</h4>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/funpacks</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/funpacks \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "object": "list",
+  "count": 2,
+  "data": [
+    {
+      "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
+      "object": "funpack",
+      "name": "team-fortress-2",
+      "created": 1364243761
+    },
+    { ... },
+    { ... }
+  ]
+}
+            </div>
+          </div>
         </td>
       </tr>
 
@@ -472,7 +748,6 @@
 {
   "id": "e279e9e6-5392-43c0-a443-858aac1af2e0",
   "object": "snapshot",
-  "livemode": false,
   "created": 1364243761,
   "size": 1401946112
 }
@@ -484,17 +759,88 @@
         <td class="method-description">
           <h4>Retrieve an existing snapshot</h4>
         </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/snapshots/{SNAPSHOT_ID}</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/snapshots/e279e9e6-5392-43c0-a443-858aac1af2e0 \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "id": "e279e9e6-5392-43c0-a443-858aac1af2e0",
+  "object": "snapshot",
+  "created": 1364243761,
+  "size": 1401946112
+}
+            </div>
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
           <h4>Download an archive of a snapshot</h4>
         </td>
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/snapshots/{SNAPSHOT_ID}.zip</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/snapshots/e279e9e6-5392-43c0-a443-858aac1af2e0.zip \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers">
+              Status: 302
+              <br/>
+              Location: https://dl.minefold.com/e279e9e6-5392-43c0-a443-858aac1af2e0.zip
+            </div>
+          </div>
+        </td>
       </tr>
 
       <tr class="method-section">
         <td class="method-description">
           <h4>List all snapshots</h4>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/servers/{SERVER_ID}/snapshots</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers/3871b2fe-0117-422b-ac85-097acea61c18/snapshots \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "object": "list",
+  "count": 3,
+  "data": [
+    {
+      "id": "e279e9e6-5392-43c0-a443-858aac1af2e0",
+      "object": "snapshot",
+      "created": 1364243761,
+      "size": 1401946112
+    },
+    { ... },
+    { ... }
+  ]
+}
+            </div>
+          </div>
         </td>
       </tr>
 
@@ -503,7 +849,10 @@
         <td class="method-description">
           <h3>Regions</h3>
           <p>
-            Regions are datacenters that are available to run a game. They can be queried to determine the region with the fastest ping-time for the player.
+            Regions are datacenters that are available to run a game. They can be queried to determine the region with the fastest ping-time for the player. Servers can be migrated from region to region (though this may take some time if the server is particularly large).
+          </p>
+          <p>
+            All accounts support us-east-1 by default. More <a href="http://aws.amazon.com/about-aws/globalinfrastructure/">Amazon datacenters</a> are coming soon as well as the ability to plug in on-site infrastructure.
           </p>
         </td>
       </tr>
@@ -513,6 +862,11 @@
           <h4>The region object</h4>
           <h5>Attributes</h5>
           <dl class="attribute-list">
+            <dt>id</dt>
+            <dd>string</dd>
+
+            <dt>object</dt>
+            <dd>string, <span>value is "region"</span></dd>
           </dl>
         </td>
 
@@ -520,11 +874,7 @@
           <div class="method-example-object">
 {
   "id": "us-east-1",
-  "object": "region",
-  "livemode": false,
-  "created": 1364243761,
-  "lat": 38.13,
-  "long": -78.45,
+  "object": "region"
 }
           </div>
         </td>
@@ -533,6 +883,33 @@
       <tr class="method-section">
         <td class="method-description">
           <h4>List all regions</h4>
+        </td>
+
+        <td class="method-example">
+          <div class="method-definition">
+<span class="method-verb method-verb-get">GET</span> <span class="method-pattern">https://api.partycloud.com/regions</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/regions \
+    -u auth1234:
+          </div>
+
+          <div class="method-response">
+            <div class="method-response-headers"></div>
+            <div class="method-response-body">
+{
+  "object": "list",
+  "count": 1,
+  "data": [
+    {
+      "id": "us-east-1",
+      "object": "region"
+    }
+  ]
+}
+            </div>
+          </div>
         </td>
       </tr>
 

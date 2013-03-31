@@ -1,11 +1,11 @@
 $helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 $monaco: Monaco, Consolas, 'Lucida Console', monospace;
 
-$blue: #5086CA;
+$blue: #06C;
 $yellow: #FD8;
 $green: #4B5;
 
-$lightGray: lighten(desaturate($blue, 20%), 43%);
+$lightGray: lighten(desaturate($blue, 60%), 47%);
 
 @mixin clearfix {
   *zoom: 1;
@@ -23,30 +23,65 @@ $lightGray: lighten(desaturate($blue, 20%), 43%);
 
 body {
   font-family: $helvetica;
-  background-color: $lightGray;
+  background-color: #f6f8fa;
   margin: 0;
   padding: 0;
 }
 
+.guide {
+  width: 200px;
+  padding: 20px;
+  color: white;
+  background-color: white;
+  border-right: 1px solid #CCC;
+
+  position: fixed;
+  top: 0;
+  bottom: 0;
+
+  ol {
+    padding-left: 0;
+    list-style-type: none;
+    font-size: 12px;
+    line-height: 20px;
+
+    ol {
+      margin-left: 10px;
+      font-size: 11px;
+    }
+
+    li a {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+}
+
 .methods {
+  margin-left: 241px;
+  border-spacing: 0;
+
   .method-section {
     vertical-align: top;
+    display: block;
+    border-bottom: 1px solid rgba(black, 0.05);
 
     .method-description {
       width: 460px;
+      min-width: 460px;
 
       background-color: white;
 
       padding-left: 20px;
       padding-right: 20px;
-
-      border-right: 1px solid rgba(black, 0.1);
-      border-bottom: 1px solid rgba(black, 0.1);
+      padding-bottom: 40px;
     }
 
     .method-example {
+      padding-top: 60px;
       padding-left: 20px;
       padding-right: 20px;
+      padding-bottom: 40px;
 
       font: 12px $monaco;
 
@@ -117,10 +152,33 @@ dl.argument-list {
   font-size: 12px;
   dt {
     font-weight: 600;
+    width: 34%;
+    float: left;
+    clear: both;
+    text-align: right;
+
+    margin-top: 10px;
+
+    display: block;
   }
 
   dd {
     font-weight: 600;
+    float: right;
+    width: 60%;
+    margin-left: 0;
+    display: block;
+
+    margin-top: 10px;
+
+    + dd {
+      margin-top: 5px;
+    }
+
+    p {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
 
     span, p {
       font-weight: normal;
