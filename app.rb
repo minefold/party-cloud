@@ -8,6 +8,7 @@ configure do
 
   sprockets = Sprockets::Environment.new(settings.root)
 
+  sprockets.append_path('app/assets/images')
   sprockets.append_path('app/assets/javascripts')
   sprockets.append_path('app/assets/stylesheets')
 

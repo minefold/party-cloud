@@ -1,7 +1,14 @@
-$helvetica: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$monaco: Monaco, Consolas, 'Lucida Console', monospace;
+@import 'normalize';
 
-$blue: #06C;
+$helvetica: "Helvetica Neue", Helvetica, Arial, sans-serif;
+$georgia: Georgia, Cambria, "Times New Roman", Times, serif;
+$lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+$monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
+$verdana: Verdana, Geneva, sans-serif;
+
+$meta: "MetaPlusBold-Roman";
+
+$blue: #47C;
 $yellow: #FD8;
 $green: #4B5;
 
@@ -21,12 +28,104 @@ $lightGray: lighten(desaturate($blue, 60%), 47%);
   }
 }
 
-body {
-  font-family: $helvetica;
-  background-color: #f6f8fa;
-  margin: 0;
-  padding: 0;
+.container {
+  width: 960px;
+  margin-left: auto;
+  margin-right: auto;
 }
+
+html {
+  font: 100%/1.25 $helvetica;
+  -webkit-font-smoothing: antialiased;
+  background-color: darken(white, 5%);
+}
+
+a {
+  color: $blue;
+  text-decoration: none;
+}
+
+header {
+  @include clearfix;
+
+  h1 {
+    float: left;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  nav {
+    float: right;
+  }
+
+  h1 {
+    font: 28px/900 $meta;
+    line-height: 40px;
+    margin: 0;
+    padding: 10px 10px;
+  }
+
+  nav {
+    ul {
+      @include clearfix;
+      list-style-type: none;
+      margin: 0;
+
+      li {
+        float: left;
+
+        a {
+          color: rgba(black, 0.4);
+          display: block;
+          font-size: 14px;
+          line-height: 20px;
+          padding: 20px 10px;
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.btn {
+  border-radius: 40px;
+  background-color: white;
+  color: black;
+  padding: 10px 20px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.jumbotron {
+  padding: 60px (60px + 20px + 10px);
+  color: white;
+
+  box-shadow: inset 0 1px 0 rgba(white, 0.1);
+  border-radius: 3px;
+
+  background: $blue url('/assets/art.png') no-repeat (960px - 400px - 80px) center;
+
+  h1 {
+    margin-top: 0;
+    font-size: 36px;
+    font-family: "MetaPlusBold-Roman";
+    line-height: 60px;
+    margin-bottom: 0px;
+    -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  p {
+    color: rgba(white, 0.6);
+    margin-top: 0;
+    margin-bottom: 40px;
+    font: 18px/20px;
+    width: 60px + 20px + 60px + 20px + 60px + 20px + 60px + 20px + 60px;
+  }
+
+  a.btn {
+    display: inline-block;
+  }
+}
+
 
 .guide {
   width: 200px;
@@ -82,7 +181,7 @@ body {
       padding-right: 20px;
       padding-bottom: 40px;
 
-      font: 12px $monaco;
+      font: 12px $monospace;
 
       .method-example-object {
         white-space: pre;
@@ -188,4 +287,116 @@ dl.argument-list {
   }
 
 
+}
+
+.more-info {
+  @include clearfix;
+  margin-top: 20px;
+  background: white;
+  margin-bottom: 60px;
+  box-shadow: 0 1px 1px rgba(black, 0.1);
+  border-radius: 3px;
+
+  center {
+    margin: 60px 0;
+    a.btn {
+      display: inline-block;
+      color: white;
+      background-color: $green;
+    }
+  }
+}
+
+.features {
+  @include clearfix;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(black, 0.1);
+}
+
+.section {
+  box-sizing: border-box;
+  margin-top: 20px;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 60px + 20px + 60px + 20px + 60px + 20px + 60px + 20px + 60px + 20px;
+  margin-bottom: 20px;
+  clear: both;
+
+  color: rgba(black, 0.6);
+  line-height: 24px;
+
+  h2 {
+    color: black;
+    font-weight: 500;
+  }
+
+  figure {
+    float: left;
+    margin-top: -20px;
+    margin-left: -400px;
+  }
+
+}
+
+.section-right {
+  float: right;
+  margin-right: 60px + 20px;
+}
+
+.section-left {
+  float: left;
+  margin-left: 60px + 20px;
+}
+
+.social-proof {
+  clear: both;
+  padding-top: 40px;
+  text-align: center;
+  font-size: 18px;
+  a.btn {
+    margin-left: 20px;
+  }
+}
+
+.highlight {
+  background-color: $yellow;
+  padding-left: 4px;
+  padding-right: 4px;
+  display: inline-block;
+}
+
+.enterprise {
+//  font-size: 12px;
+  color: rgba(black, 0.6);
+}
+
+abbr[title] {
+  border-bottom-color: rgba(black, 0.1);
+  font-variant: small-caps;
+  font-size: 90%;
+}
+
+.clients {
+  margin: 40px 20px;
+  text-align: center;
+
+  h5 {
+    text-transform: uppercase;
+    color: rgba(black, 0.2);
+    font-weight: 500;
+    display: inline-block;
+    font-size: 14px;
+    margin: 0;
+    vertical-align: top;
+    line-height: 20px;
+  }
+
+  .client {
+    display: inline-block;
+    margin-left: 20px;
+  }
+  .client:first-child {
+    margin-left: 0;
+  }
 }
