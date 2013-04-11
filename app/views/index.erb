@@ -18,18 +18,22 @@
 
   <div class="clients">
     <h5>Trusted by</h5>
-    <!-- <a class="client" href="http://mojang.com">
-      <img src="/assets/mojang.png" />
-    </a> -->
+    <% if param[:beta] %>
+      <a class="client" href="http://mojang.com">
+        <img src="/assets/mojang.png" />
+      </a>
+    <% end %>
     <a class="client" href="https://minefold.com">
       <img src="/assets/minefold.png" />
     </a>
     <a class="client" href="http://www.alientrap.org">
       <img src="/assets/alientrap.png" />
     </a>
-    <!-- <a class="client" href="http://www.pinion.gg">
-      <img src="/assets/pinion.png" />
-    </a> -->
+    <% if param[:beta] %>
+      <a class="client" href="http://www.pinion.gg">
+        <img src="/assets/pinion.png" />
+      </a>
+    <% end %>
   </div>
 
   <div class="more-info">
