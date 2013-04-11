@@ -331,9 +331,7 @@ dl.argument-list {
   }
 
   figure {
-    float: left;
     margin-top: -20px;
-    margin-left: -400px;
   }
 
 }
@@ -341,11 +339,21 @@ dl.argument-list {
 .section-right {
   float: right;
   margin-right: 60px + 20px;
+
+  figure {
+    float: left;
+    margin-left: -400px;
+  }
 }
 
 .section-left {
   float: left;
   margin-left: 60px + 20px;
+
+  figure {
+    float: right;
+    margin-right: -400px;
+  }
 }
 
 .social-proof {
