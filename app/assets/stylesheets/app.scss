@@ -292,7 +292,7 @@ dl.argument-list {
   @include clearfix;
   margin-top: 20px;
   background: white;
-  margin-bottom: 60px;
+//  margin-bottom: 60px;
   box-shadow: 0 1px 1px rgba(black, 0.1);
   border-radius: 3px;
 
@@ -303,6 +303,14 @@ dl.argument-list {
       color: white;
       background-color: $green;
     }
+  }
+
+  .highlight {
+    background-color: lighten($yellow, 15%);
+    color: desaturate(darken($yellow, 40%), 80%);
+    padding-left: 3px;
+    padding-right: 3px;
+    display: inline-block;
   }
 }
 
@@ -366,13 +374,6 @@ dl.argument-list {
   }
 }
 
-.highlight {
-//  background-color: $yellow;
-//  padding-left: 4px;
-//  padding-right: 4px;
-//  display: inline-block;
-}
-
 .metal {
   color: rgba(black, 0.6);
 }
@@ -410,5 +411,41 @@ abbr[title] {
     img {
       display: block;
     }
+  }
+}
+
+footer {
+  font-size: 12px;
+
+  line-height: 20px;
+
+  color: rgba(black, 0.4);
+
+  margin-top: 20px;
+  margin-bottom: 60px;
+  @include clearfix;
+
+  nav {
+    float: left;
+
+    ul {
+      list-style-type: none;
+      @include clearfix;
+      margin: 5px;
+      padding: 0;
+
+      li {
+        float: left;
+        a {
+          display: block;
+          padding: 5px;
+        }
+      }
+    }
+  }
+
+  .copyright {
+    float: right;
+    margin: 10px;
   }
 }
