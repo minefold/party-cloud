@@ -6,7 +6,7 @@ $lucida-grande: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 $monospace: "Bitstream Vera Sans Mono", Consolas, Courier, monospace;
 $verdana: Verdana, Geneva, sans-serif;
 
-$meta: "MetaPlusBold-Roman";
+$meta: "ff-meta-web-pro", $helvetica;
 
 $blue: #47C;
 $yellow: #FD8;
@@ -50,7 +50,6 @@ header {
 
   h1 {
     float: left;
-    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   nav {
@@ -58,10 +57,10 @@ header {
   }
 
   h1 {
-    font: 28px/900 $meta;
-    line-height: 40px;
+    font: 700 28px/40px $meta;
     margin: 0;
     padding: 10px 10px;
+    -webkit-font-smoothing: subpixel-antialiased;
   }
 
   nav {
@@ -92,7 +91,7 @@ header {
   color: black;
   padding: 10px 20px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: 700;
 }
 
 .jumbotron {
@@ -107,7 +106,7 @@ header {
   h1 {
     margin-top: 0;
     font-size: 36px;
-    font-family: "MetaPlusBold-Roman";
+    font-family: $meta;
     line-height: 60px;
     margin-bottom: 0px;
     -webkit-font-smoothing: subpixel-antialiased;
@@ -249,7 +248,7 @@ dl.attribute-list,
 dl.argument-list {
   font-size: 12px;
   dt {
-    font-weight: 600;
+    font-weight: 700;
     width: 34%;
     float: left;
     clear: both;
@@ -261,7 +260,7 @@ dl.argument-list {
   }
 
   dd {
-    font-weight: 600;
+    font-weight: 700;
     float: right;
     width: 60%;
     margin-left: 0;
