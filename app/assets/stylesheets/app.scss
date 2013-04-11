@@ -292,7 +292,6 @@ dl.argument-list {
   @include clearfix;
   margin-top: 20px;
   background: white;
-//  margin-bottom: 60px;
   box-shadow: 0 1px 1px rgba(black, 0.1);
   border-radius: 3px;
 
@@ -303,14 +302,6 @@ dl.argument-list {
       color: white;
       background-color: $green;
     }
-  }
-
-  .highlight {
-    background-color: lighten($yellow, 15%);
-    color: desaturate(darken($yellow, 40%), 80%);
-    padding-left: 3px;
-    padding-right: 3px;
-    display: inline-block;
   }
 }
 
