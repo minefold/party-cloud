@@ -359,14 +359,13 @@ dl.argument-list {
 }
 
 .highlight {
-  background-color: $yellow;
-  padding-left: 4px;
-  padding-right: 4px;
-  display: inline-block;
+//  background-color: $yellow;
+//  padding-left: 4px;
+//  padding-right: 4px;
+//  display: inline-block;
 }
 
-.enterprise {
-//  font-size: 12px;
+.metal {
   color: rgba(black, 0.6);
 }
 
@@ -377,25 +376,31 @@ abbr[title] {
 }
 
 .clients {
-  margin: 40px 20px;
+  margin: 20px 20px;
   text-align: center;
+  height: 30px;
 
-  h5 {
-    text-transform: uppercase;
-    color: rgba(black, 0.2);
-    font-weight: 500;
-    display: inline-block;
-    font-size: 14px;
-    margin: 0;
+  color: rgba(black, 0.2);
+  font-weight: 500;
+  font-size: 18px;
+  vertical-align: top;
+  line-height: 30px;
+
+  .highlight {
+    background-color: $yellow;
+    color: darken($yellow, 40%);
     vertical-align: top;
-    line-height: 20px;
+    display: inline-block;
+    padding-left: 5px;
+    padding-right: 5px;
+    border-radius: 3px;
   }
 
   .client {
     display: inline-block;
-    margin-left: 20px;
-  }
-  .client:first-child {
-    margin-left: 0;
+    margin: 5px;
+    img {
+      display: block;
+    }
   }
 }
