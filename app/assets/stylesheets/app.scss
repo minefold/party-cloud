@@ -459,13 +459,6 @@ footer {
 }
 
 .overlay {
-  -moz-user-select: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  -o-user-select: none;
-  user-select: none;
-
   -webkit-tap-highlight-color: transparent;
   -webkit-touch-callout: none;
 
@@ -505,6 +498,13 @@ footer {
     -ms-transition: 300ms opacity ease;
     -o-transition: 300ms opacity ease;
     transition: 300ms opacity ease;
+
+    -moz-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
   }
 
   .overlay-content {
