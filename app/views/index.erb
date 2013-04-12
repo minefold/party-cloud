@@ -3,8 +3,8 @@
     <h1>Party<span>Cloud</span></h1>
     <nav>
       <ul>
-        <li><a href="//manage.partycloud.com/signup">Sign Up</a></li>
-        <li><a href="#">Documentation</a></li>
+        <li><a href="#" data-overlay="yay">Sign Up</a></li>
+        <li><a href="#" data-overlay="yay">Documentation</a></li>
         <li><a href="mailto:support@partycloud.com">Help &amp; Support</a></li>
       </ul>
     </nav>
@@ -13,7 +13,7 @@
   <div class="jumbotron">
     <h1>Game servers made fun</h1>
     <p>PartyCloud is a hosting platform that enables<br/><i>anybody</i> to deploy and scale multiplayer games.</p>
-    <a href="asdf" class="btn">Get Started with PartyCloud</a>
+    <a href="#" data-overlay="yay" class="btn">Get Started with PartyCloud</a>
   </div>
 
   <div class="clients">
@@ -63,7 +63,7 @@
         </figure>
         <h2>On demand</h2>
         <p>
-          87% of game servers are used for less than 10 hours a week. PartyCloud <span class="highlight">saves you money</span> by only billing when people are <em>actually playing</em>. When you need more servers, they are available instantly.
+          87% of game servers are used for less than 10 hours a week. PartyCloud <span class="highlight">saves you money</span> by only billing when people are <em>actually playing</em>. When you need more servers, they're available instantly.
         </p>
       </div>
 
@@ -81,7 +81,7 @@
     </div>
 
     <center>
-      <a href="#" class="btn">Get Started with PartyCloud</a>
+      <a href="#" data-overlay="yay" class="btn">Get Started with PartyCloud</a>
       <br/>
       <br/>
       <div class="metal">
@@ -95,10 +95,51 @@
   <footer>
     <nav>
       <ul>
-        <li><a href="#">Terms</a></li>
-        <li><a href="#">Privacy</a></li>
+        <li><a href="#" onclick="confirm('You agree that Wii Tennis is a real sport.')">Terms</a></li>
+        <li><a href="#" onclick="confirm('All your base belong to us')">Privacy</a></li>
       </ul>
     </nav>
     <p class="copyright">&copy; M&uuml;tli Corp.</p>
   </footer>
 </div>
+
+<div class="overlay">
+  <div class="shadow"></div>
+  <div class="overlay-content">
+    <h2>Heads up!</h2>
+    <p>
+      We're always looking for new friends to kick-ass with. However, PartyCloud has been brewing for over 2 years. Making something this bodacious takes time. If we open it up to everybody, millions of kids could cry.
+    </p>
+    <p>
+      If you think you we'd work well together, apply below and we'll get back to you ASAP.
+    </p>
+    <form action="http://mutlicorp.createsend.com/t/t/s/tjkh/" method="POST" id="subForm">
+      <input type="text" name="cm-name" placeholder="Gordon Freeman" />
+      <input type="email" name="cm-tjkh-tjkh" placeholder="gordon@blackmesa.com" />
+      <input type="submit" value="Sign up for PartyCloud" />
+    </form>
+    <a href="/" class="close">Close</a>
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+  var links = $('a[data-overlay=yay]'),
+      overlay = $('.overlay'),
+      closeButton = overlay.find('.close');
+
+  links.click(function(e) {
+    e.preventDefault();
+    overlay.show();
+    // Rad hack
+    setTimeout(function() { overlay.addClass('active'); }, 0);
+  });
+
+  closeButton.click(function(e) {
+    e.preventDefault();
+    overlay.removeClass('active');
+    // Rad hack
+    setTimeout(function() { overlay.hide(); }, 300);
+  });
+});
+</script>

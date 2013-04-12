@@ -28,6 +28,20 @@ $lightGray: lighten(desaturate($blue, 60%), 47%);
   }
 }
 
+@mixin inline-block {
+  display: inline-block;
+  vertical-align: baseline;
+  zoom: 1;
+  *display: inline;
+  *vertical-align: auto;
+}
+
+@mixin box-sizing($sizing) {
+  -webkit-box-sizing: $sizing;
+  -moz-box-sizing: $sizing;
+  box-sizing: $sizing;
+}
+
 .container {
   width: 960px;
   margin-left: auto;
@@ -313,7 +327,8 @@ dl.argument-list {
 }
 
 .section {
-  box-sizing: border-box;
+  @include box-sizing(border-box);
+
   margin-top: 20px;
   padding-left: 10px;
   padding-right: 10px;
@@ -385,17 +400,19 @@ abbr[title] {
   line-height: 30px;
 
   .highlight {
+    @include inline-block;
+
     background-color: $yellow;
     color: darken($yellow, 40%);
     vertical-align: top;
-    display: inline-block;
     padding-left: 5px;
     padding-right: 5px;
     border-radius: 3px;
   }
 
   .client {
-    display: inline-block;
+    @include inline-block;
+
     margin: 5px;
     img {
       display: block;
@@ -404,6 +421,8 @@ abbr[title] {
 }
 
 footer {
+  @include clearfix;
+
   font-size: 12px;
 
   line-height: 20px;
@@ -412,14 +431,14 @@ footer {
 
   margin-top: 20px;
   margin-bottom: 60px;
-  @include clearfix;
 
   nav {
     float: left;
 
     ul {
-      list-style-type: none;
       @include clearfix;
+
+      list-style-type: none;
       margin: 5px;
       padding: 0;
 
@@ -436,5 +455,144 @@ footer {
   .copyright {
     float: right;
     margin: 10px;
+  }
+}
+
+.overlay {
+  -moz-user-select: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+
+  display: none;
+
+  &.active {
+    .shadow { opacity: 1; }
+    .overlay-content { margin-top: -300px; opacity: 1; }
+  }
+
+  .shadow {
+    position: fixed;
+    top: 0; right: 0; bottom: 0; left: 0;
+
+    opacity: 0;
+
+    background-color: rgba(0, 0, 0, 0.8);
+
+    //  @include radial-gradient(
+    //    50% 50%,
+    //    ellipse closest-corner,
+    //    rgba(black, 0.45) 1%,
+    //    rgba(black, 0.8) 100%
+    //  );
+
+    background: -webkit-gradient(radial, center center, 0, center center, 460, color-stop(1%, rgba(0, 0, 0, 0.45)), color-stop(100%, rgba(0, 0, 0, 0.8)));
+    background: -webkit-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+    background: -moz-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+    background: -ms-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+    background: -o-radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+    background: radial-gradient(50% 50%, ellipse closest-corner, rgba(0, 0, 0, 0.45) 1%, rgba(0, 0, 0, 0.8) 100%);
+
+    //  @include transition(300ms opacity ease);
+
+    -webkit-transition: 300ms opacity ease;
+    -moz-transition: 300ms opacity ease;
+    -ms-transition: 300ms opacity ease;
+    -o-transition: 300ms opacity ease;
+    transition: 300ms opacity ease;
+  }
+
+  .overlay-content {
+    @include box-sizing(border-box);
+
+    width: 480px;
+    position: fixed;
+
+    left: 50%;
+    margin-left: -240px;
+
+    top: 50%;
+    margin-top: 0;
+
+    background-color: white;
+
+    padding: 20px (60px + 20px);
+    border-radius: 3px;
+
+    line-height: 25px;
+    color: rgba(black, 0.6);
+
+    //  @include transition(300ms opacity ease);
+
+    -webkit-transition: 300ms margin-top ease, 300ms opacity ease;
+    -moz-transition: 300ms margin-top ease, 300ms opacity ease;
+    -ms-transition: 300ms margin-top ease, 300ms opacity ease;
+    -o-transition: 300ms margin-top ease, 300ms opacity ease;
+    transition: 300ms margin-top ease, 300ms opacity ease;
+
+    opacity: 0;
+
+    h2 {
+      color: $blue;
+      text-align: center;
+      line-height: 35px;
+    }
+
+    p {
+      margin-bottom: 20px;
+    }
+
+    form {
+      border-top: 1px solid rgba(black, 0.1);
+      padding-top: 29px;
+    }
+
+    input {
+      display: block;
+      width: 100%;
+      @include box-sizing(border-box);
+
+      border: 2px solid rgba(black, 0.2);
+      border-radius: 3px;
+      margin-bottom: 20px;
+      padding: 8px 10px;
+
+      line-height: 20px;
+
+      outline: none;
+
+      &:active, &:focus {
+        border-color: rgba(black, 0.6);
+      }
+    }
+
+    input[type=submit] {
+      background-color: $green;
+      border: none;
+      font-weight: 600;
+      color: white;
+      padding: 15px 10px;
+    }
+
+    a.close {
+      position: absolute;
+      top: -(10px + 20px);
+      right: 0;
+      margin: 10px;
+      font-size: 12px;
+      line-height: 10px;
+      font-weight: 600;
+      color: rgba(white, 0.4);
+
+      &:hover {
+        color: white;
+      }
+    }
+
   }
 }
