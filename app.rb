@@ -17,6 +17,23 @@ configure do
   set :erb, escape_html: true
 end
 
+configure :production do
+  require 'bugsnag'
+  require 'librato/rack'
+  require 'rack/ssl'
+
+  Bugsnag.configure do |config|
+    config.api_key = ENV['BUGSNAG_API_KEY']
+    config.project_root = settings.root
+  end
+
+  enable :raise_errors
+
+  use Bugsnag::Rack
+  use Librato::Rack
+  use Rack::SSL
+end
+
 # Router
 
 get '/assets/*' do

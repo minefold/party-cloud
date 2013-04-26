@@ -6,3 +6,9 @@ gem 'rack'
 gem 'sinatra'
 gem 'sprockets'
 gem 'sass'
+
+group :production do
+  gem 'bugsnag'
+  gem 'librato-rack'
+  gem 'rack-ssl'
+end
