@@ -25,8 +25,8 @@
           <ol>
             <li><a href="#create-server">Create a new server</a></li>
             <li><a href="#retrieve-server">Retrieve an existing server</a></li>
-            <li><a href="#update-server">Update a server</a></li>
-            <li><a href="#delete-server">Delete a server</a></li>
+ <!--            <li><a href="#update-server">Update a server</a></li> -->
+ <!--            <li><a href="#delete-server">Delete a server</a></li> -->
             <li><a href="#list-servers">List all servers</a></li>
           </ol>
         </li>
@@ -57,14 +57,14 @@
           </ol>
         </li>
 
-        <li>
+ <!--        <li>
           <a href="#snapshots">Shapshots</a>
           <ol>
             <li><a href="#retrieve-snapshot">Retrieve an existing shapshot</a></li>
             <li><a href="#download-snapshot">Download an archive of a snapshot<a></li>
             <li><a href="#list-snapshots">List all snapshots<a></li>
           </ol>
-        </li>
+        </li> -->
 
         <li>
           <a href="#regions">Regions</a>
@@ -155,34 +155,11 @@
               </p>
             </dd>
 
-            <dt>region</dt>
-            <dd>string</dd>
-            <dd>
-              <p>
-                The server's geographic region. Persistant data from the server will be stored here. This is a attribute of the server, not the session as it's unlikely that servers will move rather than when starting a session because moving existing data may take time.
-              </p>
-            </dd>
-
             <dt>state</dt>
             <dd>string</dd>
 
-            <dt>players</dt>
-            <dd>positive integer or zero</dd>
-
             <dt>funpack</dt>
             <dd>string</dd>
-
-            <dt>owner</dt>
-            <dd>string <span> or null</span></dd>
-            <dd>
-              <p>The player that "owns" the server. Used for server lists. Usually the player that created it.</p>
-            </dd>
-
-            <dt>snapshot</dt>
-            <dd>string <span>or null</span></dd>
-            <dd>
-              <p>The id of the current snapshot of the server's data. Can be null if the server hasn't run yet.</p>
-            </dd>
 
             <dt>created</dt>
             <dd>timestamp</dd>
@@ -201,11 +178,8 @@
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "server",
   "name": "minebnb",
-  "region": "us-east-1",
   "state": "up",
-  "players": 1,
   "funpack": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
-  "snapshot": "e279e9e6-5392-43c0-a443-858aac1af2e0",
   "created": 1364243761,
   "ip": "192.168.1.1",
   "port": 12345
@@ -223,15 +197,15 @@
             <dt>funpack</dt>
             <dd>required</dd>
 
+            <dt>region</dt>
+            <dd>required</dd>
+
             <dt>name</dt>
             <dd>optional</dd>
-
-            <dt>region</dt>
-            <dd>optional, <span>default is us-east-1</span></dd>
           </dl>
 
           <h5>Returns</h5>
-          <p>A new server object. The server isn't running yet, it merely exists logically.</p>
+          <p>A new server object. The server isn't running yet, it just exists logically.</p>
         </td>
 
         <td class="method-example">
@@ -243,7 +217,7 @@
 <span class="prompt">$</span> curl https://api.partycloud.com/servers \
     -u auth1234: \
     -d name=minebnb \
-    -d region=us-east-1 \
+    -d region=cbce9ef6-61b0-4e7c-a41e-2b5ecb2d12bf \
     -d funpack=5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12
           </div>
 
@@ -254,11 +228,8 @@
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "server",
   "name": "minebnb",
-  "region": "us-east-1",
   "state": "down",
-  "players": 0,
   "funpack": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
-  "snapshot": null,
   "created": 1364243761,
   "ip": null,
   "port": null
@@ -284,7 +255,7 @@
         </td>
       </tr>
 
-      <tr class="method-section" id="update-server">
+ <!--      <tr class="method-section" id="update-server">
         <td class="method-description">
           <h4>Update a server</h4>
           <p>You can change the snapshot that's associated with a server (i.e. rollback). However, if the server is running, a snapshot will be generated when it stops so you need to consciously pass kill=true to kill the server without generating a snapshot.</p>
@@ -318,9 +289,9 @@
     -d region=us-east-1 \
           </div>
         </td>
-      </tr>
+      </tr> -->
 
-      <tr class="method-section" id="delete-server">
+ <!--      <tr class="method-section" id="delete-server">
         <td class="method-description">
           <h4>Delete a server</h4>
         </td>
@@ -342,13 +313,13 @@
             </div>
           </div>
         </td>
-      </tr>
+      </tr> -->
 
       <tr class="method-section" id="list-servers">
         <td class="method-description">
           <h4>List all servers</h4>
 
-          <h5>Arguments</h5>
+ <!--          <h5>Arguments</h5>
           <dl class="argument-list">
             <dt>state</dt>
             <dd>optional, <span>default is all</span></dd>
@@ -358,7 +329,7 @@
 
             <dt>funpack</dt>
             <dd>optional</dd>
-          </dl>
+          </dl> -->
         </td>
 
         <td class="method-example">
@@ -402,13 +373,13 @@
   "id": "3871b2fe-0117-422b-ac85-097acea61c18",
   "object": "session",
   "endOnEmpty": true,
-  "args": "motd=Hello!",
   "created": 1364243761,
   "started": 1364244833,
   "stopped": 1364247533,
   "server": "3871b2fe-0117-422b-ac85-097acea61c18",
   "ip": "192.168.1.1",
-  "port": 12345
+  "port": 12345,
+  "exitStatus": 0
 }
             </div>
           </div>
@@ -417,11 +388,26 @@
 
       <tr class="method-section" id="start-session">
         <td class="method-description">
-          <h4>Start a session</h4>
+          <h4>Start a new session</h4>
+          <p>
+            This method blocks until the server is available for players to play on. This means that it's dependant on the server's Funpack.
+          </p>
+          <p>
+            The data in the post body will be written out to a file and passed to the Funpack.
+          </p>
+          <p>
+            A server can't have multiple concurrent sessions. Create another server to do that.
+          </p>
         </td>
         <td class="method-example">
           <div class="method-definition">
 <span class="verb">POST</span> <span class="pattern">https://api.partycloud.com/servers/{SERVER_ID}/session</span>
+          </div>
+
+          <div class="method-request">
+<span class="prompt">$</span> curl https://api.partycloud.com/servers/{SERVER_ID}/session \
+    -u auth1234:
+    -d "whitelist:true\npvp:false"
           </div>
         </td>
       </tr>
@@ -429,6 +415,9 @@
       <tr class="method-section" id="retrieve-server-session">
         <td class="method-description">
           <h4>Retrieve a server's current session</h4>
+          <p>
+            Players is a list of all players who have played on that server in that session. It may contain several instances of the same player.
+          </p>
         </td>
         <td class="method-example">
 
@@ -509,7 +498,7 @@
         </td>
       </tr>
 
-      <tr class="method-section" id="list-sessions">
+ <!--      <tr class="method-section" id="list-sessions">
         <td class="method-description">
           <h4>List all sessions</h4>
         </td>
@@ -518,7 +507,7 @@
 <span class="verb">GET</span> <span class="pattern">https://api.partycloud.com/sessions</span>
           </div>
         </td>
-      </tr>
+      </tr> -->
 
       <tr class="method-section" id="players">
         <td class="method-description">
@@ -545,7 +534,7 @@
             <dt>created</dt>
             <dd>timestamp</dd>
 
-            <dt>name</dt>
+            <dt>username</dt>
             <dd>string <span>or null</span></dd>
             <dd><p>Convenient label for support tools.</p></dd>
 
@@ -560,7 +549,7 @@
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
   "distinctId": "1",
-  "name": "chrislloyd",
+  "username": "chrislloyd",
   "email": "chrislloyd@example.com",
   "created": 1364243761
 }
@@ -585,7 +574,7 @@
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
   "distinctId": "1",
-  "name": "chrislloyd",
+  "username": "chrislloyd",
   "email": "christopher.lloyd@gmail.com",
   "created": 1364243761
 }
@@ -609,7 +598,7 @@
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
   "distinctId": "1",
-  "name": "chrislloyd",
+  "username": "chrislloyd",
   "email": "christopher.lloyd@gmail.com",
   "created": 1364243761
 }
@@ -632,7 +621,7 @@
 <span class="prompt">$</span> curl https://api.partycloud.com/players/79f4b42b-2cd4-439b-b6fb-0fa4c803168 \
     -X PATCH
     -u auth1234:
-    -d name=whatupdave
+    -d username=whatupdave
     -d email=whatupdave@example.com
           </div>
 
@@ -645,7 +634,7 @@
   "id": "79f4b42b-2cd4-439b-b6fb-0fa4c8031684",
   "object": "player",
   "distinct_id": "1",
-  "name": "whatupdave",
+  "username": "whatupdave",
   "email": "whatupdave@example.com",
   "created": 1364243761
 }
@@ -734,7 +723,7 @@
   "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
   "object": "funpack",
   "name": "team-fortress-2",
-  "created": 1364243761
+  "servers": 3
 }
           </div>
         </td>
@@ -762,7 +751,7 @@
   "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
   "object": "funpack",
   "name": "team-fortress-2",
-  "created": 1364243761
+  "servers": 3
 }
             </div>
           </div>
@@ -795,7 +784,7 @@
       "id": "5b81dc66-9d9d-4dc4-9ee2-b475b0fdfc12",
       "object": "funpack",
       "name": "team-fortress-2",
-      "created": 1364243761
+      "servers": 3
     },
     { ... },
     { ... }
@@ -806,7 +795,7 @@
         </td>
       </tr>
 
-      <tr class="method-section" id="snapshots">
+  <!--     <tr class="method-section" id="snapshots">
         <td class="method-description">
           <h3>Snapshots</h3>
           <p>
@@ -890,6 +879,9 @@
       <tr class="method-section" id="list-snapshots">
         <td class="method-description">
           <h4>List all snapshots</h4>
+          <p>
+            A list of all the snapshots generated by a server.
+          </p>
         </td>
 
         <td class="method-example">
@@ -922,17 +914,17 @@
             </div>
           </div>
         </td>
-      </tr>
+      </tr> -->
 
 
       <tr class="method-section" id="regions">
         <td class="method-description">
           <h3>Regions</h3>
           <p>
-            Regions are datacenters that are available to run a game. They can be queried to determine the region with the fastest ping-time for the player. Servers can be migrated from region to region (though this may take some time if the server is particularly large).
+            Regions are datacenters that are available to your account. They can be queried to determine the region with the fastest ping-time for the player. Servers can be migrated from region to region (though this may take some time if the snapshots associated with a server are particularly large).
           </p>
           <p>
-            All accounts support us-east-1 by default. More <a href="http://aws.amazon.com/about-aws/globalinfrastructure/">Amazon datacenters</a> are coming soon as well as the ability to plug in on-site infrastructure.
+            All accounts support us-east-1 by default. More <a href="http://aws.amazon.com/about-aws/globalinfrastructure/">Amazon datacenters</a> are available on request.
           </p>
         </td>
       </tr>
@@ -947,14 +939,18 @@
 
             <dt>object</dt>
             <dd>string, <span>value is "region"</span></dd>
+
+            <dt>name</dt>
+            <dd>string</dd>
           </dl>
         </td>
 
         <td class="method-example">
           <div class="method-example-object">
 {
-  "id": "us-east-1",
-  "object": "region"
+  "id": "cbce9ef6-61b0-4e7c-a41e-2b5ecb2d12bf",
+  "object": "region",
+  "name": "us-east-1"
 }
           </div>
         </td>
@@ -983,8 +979,9 @@
   "count": 1,
   "data": [
     {
-      "id": "us-east-1",
-      "object": "region"
+      "id": "cbce9ef6-61b0-4e7c-a41e-2b5ecb2d12bf",
+      "object": "region",
+      "name": "us-east-1"
     }
   ]
 }
